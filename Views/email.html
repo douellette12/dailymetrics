@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <style>
+        table, th, td {
+            font-size: 12pt;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+        th {
+            background: #0098c3;
+            color: white;
+        }
+
+        h2, table {
+            font-family: Verdana;
+        }
+
+        h4 {
+            font-family: Verdana;
+            color: #0098c3;
+        }
+
+        a {
+            color: #0098c3;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        <a href="{team.INCStorageLocation}">Incidents</a>
+    </h2>
+    <table>
+        <tr>
+            <th>ReportDate</th>
+            <th>AssignedGroup</th>
+            <th>IncidentsStillOpen</th>
+            <th>TotalBreached</th>
+            <th>IncidentBreachPercentage</th>
+        </tr>
+        {incSb}
+    </table>
+    <h2>
+        <a href="{team.WOStorageLocation}">Work Orders</a>
+    </h2>
+    <table>
+        <tr>
+            <th>ReportDate</th>
+            <th>AssignedGroup</th>
+            <th>WorkOrdersStillOpen</th>
+            <th>WorkOrdersOlder60Days</th>
+            <th>WOBreachPercentage</th>
+        </tr>
+        {woSB}
+    </table>
+    <br>
+    {woBreachSB}
+</body>
+</html>
