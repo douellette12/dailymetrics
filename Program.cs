@@ -74,10 +74,10 @@ namespace CareConnectHuddle
         }
         private static void SendEmail(string body, IQueryable<TeamMember> team)
         {
-            SmtpClient smtp = new SmtpClient("smtp.hhcsystem.org");
+            SmtpClient smtp = new SmtpClient("smtp.mailserver.org");
             smtp.UseDefaultCredentials = true;
             MailMessage message = new MailMessage();
-            MailAddress from = new MailAddress("ITSDataDelivery@hhchealth.org");
+            MailAddress from = new MailAddress("ITSDataDelivery@company.org");
 
             foreach (var email in team.Select(x => x.EmailAddress))
             {
@@ -136,7 +136,7 @@ namespace CareConnectHuddle
                 {
                     woBreachSB.Append(
                         "<tr>" +
-                        "<td><a href=\"http://hhcdnetweb01.hhcsystem.org/remedy/shareit.html?id=" + item.WorkOrderId + "\">" + item.WorkOrderId + "</a></td>" +
+                        "<td><a href=\"serverurl" + item.WorkOrderId + "\">" + item.WorkOrderId + "</a></td>" +
                         "<td>" + item.AssignedGroup + "</td>" +
                         "<td>" + item.Summary + "</td>" +
                         "<td>" + item.DaysOld + "</td>" +
@@ -189,13 +189,6 @@ namespace CareConnectHuddle
                     PostToSP(team, WOfilename, "WO");
                 }
             });
-#pragma warning restore CA1416 // Validate platform compatibility
-            /*{
-                Title = "Epic Ambulatory",
-                HuddleBoard = "https://mylean.hhchealth.org/itsrunpostacuteambulatory/_api",
-                WOStorageLocation = "\\\\hhcsystem.org\\dfs\\CareConnectShare\\Ambulatory\\Ambulatory\\Lean\\Drivers\\WorkOrders\\Ambulatory_WO_drivers.xlsx",
-                INCStorageLocation = "\\\\hhcsystem.org\\dfs\\CareConnectShare\\Ambulatory\\Ambulatory\\Lean\\Drivers\\Incidents\\Ambulatory_INC_drivers.xlsx"
-            };*/
         }
 
         public static SafeAccessTokenHandle GetToken()
@@ -203,9 +196,9 @@ namespace CareConnectHuddle
             SafeAccessTokenHandle safeTokenHandle;
             string userName, domainName, passwd;
             // Get the user token for the specified user, domain, and password using the unmanaged LogonUser method.
-            domainName = "hhcsystem.org";
-            userName = "svcCustomApp";
-            passwd = "!!Cust0mApp";
+            domainName = "company.org";
+            userName = "appUsername";
+            passwd = "secret";
             const int LOGON32_PROVIDER_DEFAULT = 0;
             //This parameter causes LogonUser to create a primary token.
             const int LOGON32_LOGON_INTERACTIVE = 2;
